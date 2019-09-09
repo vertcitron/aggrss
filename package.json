@@ -1,0 +1,9 @@
+{
+  "name": "aggrss",
+  "version": "0.0.1",
+  "description": "A simple RSS aggregator made in pure Typescript, without library nor framework.",
+  "main": "index.html",
+  "repository": "git@github.com:vertcitron/aggrss.git",
+  "author": "Stéphane Souron <stef@vertcitron.fr>",
+  "license": "MIT"
+}
