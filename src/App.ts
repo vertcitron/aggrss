@@ -1,37 +1,18 @@
 import '../style/main.sass'
 
-import Feed from './models/Feed'
+import Aggregator from './models/Aggregator'
 
 // temporary DOM insertion to check if everything works
 const title = document.createElement('h1')
 title.textContent = 'AGGRSS!'
 document.body.appendChild(title)
 
-// temporary raw item to check
-const item = {
-  author: 'Me',
-  categories: [],
-  content: 'Item content',
-  description: 'Item description',
-  enclosure: {},
-  guid: 'Item guid',
-  link: 'https://www.google.com',
-  pubDate: '2019-09-09T00:00',
-  thumbnail: '',
-  title: 'Item title'
-}
+const aggregator = new Aggregator()
 
-// temporary feed to check, having 2 times the item just created
-const feed = new Feed({
-  feed: {
-    author: 'Me',
-    description: 'Feed description',
-    title: 'Feed title',
-    url: 'https://hnrss.org/frontpage',
-    link: 'https://hnrss.org/frontpage'
-  },
-  status: 'ok',
-  items: [item, item]
-})
+const query1 = aggregator.getFromURL(new URL('https://hnrss.org/newest'))
+const query2 = aggregator.getFromURL(new URL('http://feeds.bbci.co.uk/news/world/europe/rss.xml#'))
 
-feed.log()
+Promise.all([query1, query2])
+  .then(() => {
+    aggregator.log()
+  })
