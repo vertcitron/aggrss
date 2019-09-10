@@ -4,9 +4,13 @@ import Feed from './Feed'
 import { RawFeed } from './RssRawData'
 
 export default class Aggregator {
-  readonly feeds: Feed[] = []
+  public feeds: Feed[] = []
 
-  public getFromURL (url: URL): Promise<Feed> {
+  constructor () {
+    this.restore()
+  }
+
+  public getFromURL (url: URL, selected: boolean = true): Promise<Feed> {
     const rss2json = 'https://api.rss2json.com/v1/api.json?rss_url='
     return fetch(encodeURI(rss2json + url.href))
       .then(response => {
@@ -20,9 +24,10 @@ export default class Aggregator {
         if (this.hasFeed(feed)) {
           throw new Error('That feed has already been added.')
         }
-        feed.selected = true
+        feed.selected = selected
         this.feeds.push(feed)
         console.log(`Added new Feed @ ${feed.url.href}`)
+        this.save()
         this.log()
         return Feed
       })
@@ -53,10 +58,30 @@ export default class Aggregator {
    if (index > -1) {
       this.feeds.splice(index, 1)
       console.log(`Removed feed ${url}`)
+      this.save()
       this.log()
     } else {
       console.error(`Error when removing feed ${url} :`)
       console.error('This feed was not in the aggregator.')
+    }
+  }
+
+  private save () {
+    const data = this.feeds.map(f => ({ url: f.url.href, selected: f.selected }))
+    if (data.length) {
+      localStorage.setItem('feeds', JSON.stringify(data))
+    } else {
+      localStorage.removeItem('feeds')
+    }
+  }
+
+  private restore () {
+    const rawData = localStorage.getItem('feeds')
+    if (rawData) {
+      this.feeds = []
+      for (const item of JSON.parse(rawData)) {
+        this.getFromURL(new URL(item.url), item.selected)
+      }
     }
   }
 }
