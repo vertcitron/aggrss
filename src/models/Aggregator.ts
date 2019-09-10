@@ -39,7 +39,24 @@ export default class Aggregator {
   }
 
   public hasFeed(feed: Feed): boolean {
+    // feed comparison are based on URLs
     const feedsUrls = this.feeds.map(item => item.url.href)
     return feedsUrls.includes(feed.url.href)
+  }
+
+  public remove (feed: Feed | URL | string) {
+    let url: string = ''
+    if (feed instanceof Feed) url = feed.url.href
+    if (feed instanceof URL) url = feed.href
+    url = <string>feed
+    const index = this.feeds.map(f => f.url.href).indexOf(url)
+   if (index > -1) {
+      this.feeds.splice(index, 1)
+      console.log(`Removed feed ${url}`)
+      this.log()
+    } else {
+      console.error(`Error when removing feed ${url} :`)
+      console.error('This feed was not in the aggregator.')
+    }
   }
 }
