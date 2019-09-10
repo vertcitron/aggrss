@@ -9,4 +9,4 @@ const aggregator = new Aggregator()
 aggregator.getFromURL(new URL('https://hnrss.org/newest')),
 aggregator.getFromURL(new URL('http://feeds.bbci.co.uk/news/world/europe/rss.xml')),
 aggregator.getFromURL(new URL('https://css-tricks.com/feed/'))
-
+aggregator.getFromURL(new URL('https://www.google.com'))

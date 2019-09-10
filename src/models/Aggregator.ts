@@ -16,7 +16,11 @@ export default class Aggregator {
     return fetch(encodeURI(rss2json + url.href))
       .then(response => {
         if (!response.ok) {
-          throw new Error(response.statusText || 'No valid feed at this URL.')
+          return {
+            feed: { author: '', description: '', link: '', title: url.href, url: url.href },
+            items: [],
+            status: 'error'
+          }
         }
         return response.json()
       })

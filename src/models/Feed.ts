@@ -19,7 +19,7 @@ export default class Feed {
     this.description = raw.feed.description || ''
     this.title = raw.feed.title || ''
     this.status = raw.status
-    this.selected = true
+    this.selected = raw.status === 'ok'
     this.items = []
     this.url = new URL(raw.feed.url)
     // then what may fail...

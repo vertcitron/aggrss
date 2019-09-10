@@ -13,25 +13,28 @@ export default class FeedBlock {
     if (feed.status !== 'ok') this.wrapper.classList.add('error')
     if (!feed.selected) this.wrapper.classList.add('unselected')
 
-    this.select = document.createElement('input')
-    this.select.type = 'checkbox'
-    this.select.checked = feed.selected
-    this.select.addEventListener('click', e => {
-      feed.toggle()
-    })
+    if (feed.status === 'ok') {
+      this.select = document.createElement('input')
+      this.select.type = 'checkbox'
+      this.select.checked = feed.selected
+      this.select.addEventListener('click', e => {
+        feed.toggle()
+      })
+      this.wrapper.appendChild(this.select)
+    }
+
 
     this.name = document.createElement('div')
     this.name.textContent = feed.title
+    this.wrapper.appendChild(this.name)
 
     this.close = document.createElement('img')
     this.close.src = crossIcon
     this.close.addEventListener('click', e => {
       feed.remove()
     })
-
-    this.wrapper.appendChild(this.select)
-    this.wrapper.appendChild(this.name)
     this.wrapper.appendChild(this.close)
+
     parent.appendChild(this.wrapper)
   }
 }
