@@ -4,10 +4,34 @@
 html
   height: 100%
   font-family: $primary-font
-  font-size: 0.875rem
+  font-size: 14px
 
 body
   height: 100%
   background-color: $palette1
   color: $palette3
   @include flex-column-center-center
+  box-sizing: border-box
+  margin: 0
+  padding: 0.5rem
+  header
+    background-color: #663333
+    width: 100%
+    text-align: center
+    border-bottom: 2px solid $palette3
+    h1
+      margin: 0.5rem 0
+      font-size: 1.6rem
+  main
+    background-color: #336633
+    width: 100%
+    flex: 1
+    margin: 0.5rem 0
+    overflow: auto
+  footer
+    background-color: #333366
+    width: 100%
+    text-align: center
+    font-size: 0.8rem
+    padding-top: 0.5rem
+    border-top: 2px solid $palette3

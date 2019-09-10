@@ -8,7 +8,7 @@ export default class Title {
     this.element.textContent = 'AGGRSS!'
   }
 
-  render (vDom: VirtualDOM) {
-    vDom.body.appendChild(this.element)
+  render (parent: HTMLElement) {
+    parent.appendChild(this.element)
   }
 }

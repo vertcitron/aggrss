@@ -14,5 +14,7 @@ const promises = [
 
 const vDom = new VirtualDOM()
 const title = new Title()
-title.render(vDom)
+title.render(vDom.header)
+vDom.main.textContent = 'This is the main part of layout'
+vDom.footer.textContent = 'This is the footer of layout'
 vDom.render()
