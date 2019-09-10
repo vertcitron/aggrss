@@ -2,6 +2,7 @@ import Aggregator from '../models/Aggregator'
 import FeedSelector from './FeedsSelector'
 import Title from './Title'
 import NewFeedInput from './NewFeedInput'
+import FeedItemBlock from './FeedItemBlock'
 
 export default class VirtualDOM {
   readonly body: HTMLBodyElement
@@ -27,6 +28,12 @@ export default class VirtualDOM {
       aggr.getFromURL(new URL(value))
     })
     new FeedSelector(this.header, aggr)
+
+    for (const feed of aggr.feeds) {
+      for (const item of feed.items) {
+        new FeedItemBlock(this.main, item)
+      }
+    }
   }
 
   render () {
