@@ -17,23 +17,22 @@ body
   header
     width: 100%
     text-align: center
-    border-bottom: 2px solid $palette3
+    border-bottom: 1px solid $palette3
     h1
       margin: 0.5rem 0
       font-size: 1.6rem
   main
-    background-color: #336633
     width: 100%
     flex: 1
     margin: 0.5rem 0
     overflow: auto
   footer
-    background-color: #333366
     width: 100%
     text-align: center
+    font-style: italic
     font-size: 0.8rem
     padding-top: 0.5rem
-    border-top: 2px solid $palette3
+    border-top: 1px solid $palette3
 
 .feedselector
   display: flex
@@ -66,3 +65,21 @@ body
     color: darken($palette3, 10%)
   .feedblock.error
     color: $danger-color
+
+.newfeed
+  border-top: 1px solid $palette3
+  padding: 0.9rem 8rem 0.5rem
+  display: flex
+  flex-flow: row nowrap
+  align-items: center
+  input[type=text]
+    flex: 1
+    margin-right: 1rem
+    padding: 0.25rem 1rem
+    border: none
+    border-radius: 0.33rem
+  button
+    padding: 0.28rem 1rem
+    border: none
+    border-radius: 0.33rem
+    background-color: $palette4
