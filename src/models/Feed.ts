@@ -38,8 +38,16 @@ export default class Feed {
     }
   }
 
-  // In order to be able to visualize before having an IHM
-  public log (): void {
-    console.log('Feed =\n', this)
+  public toggle () {
+    this.selected = !this.selected
+    this.update()
+  }
+
+  private update () {
+    console.error(`Update method for feed ${this.title} is not defined.`)
+  }
+  
+  public onUpdate (callback: () => void) {
+    this.update = callback
   }
 }

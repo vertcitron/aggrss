@@ -2,6 +2,7 @@
 
 import Feed from './Feed'
 import { RawFeed } from './RssRawData'
+import VirtualDOM from '../UI/VirtualDom'
 
 export default class Aggregator {
   public feeds: Feed[] = []
@@ -25,22 +26,26 @@ export default class Aggregator {
           throw new Error('That feed has already been added.')
         }
         feed.selected = selected
+        feed.onUpdate(() => {
+          this.save()
+          this.render()
+        })
         this.feeds.push(feed)
         console.log(`Added new Feed @ ${feed.url.href}`)
         this.save()
         this.log()
+        this.render()
         return Feed
       })
       .catch(error => {
-        console.error(`Error when adding feed @ ${url.href} :`)
-        console.error(error)
+        console.error(`Error when adding feed @ ${url.href} : ${error.message}`)
         this.log()
         return error
       })
   }
 
   public log (): void {
-    console.log(this.feeds)
+    // console.log(this.feeds)
   }
 
   public hasFeed(feed: Feed): boolean {
@@ -83,5 +88,10 @@ export default class Aggregator {
         this.getFromURL(new URL(item.url), item.selected)
       }
     }
+  }
+
+  public render () {
+    const v = new VirtualDOM(this)
+    v.render()
   }
 }

@@ -15,7 +15,6 @@ body
   margin: 0
   padding: 0.5rem
   header
-    background-color: #663333
     width: 100%
     text-align: center
     border-bottom: 2px solid $palette3
@@ -35,3 +34,25 @@ body
     font-size: 0.8rem
     padding-top: 0.5rem
     border-top: 2px solid $palette3
+
+.feedselector
+  display: flex
+  flex-flow: row wrap
+  justify-content: center
+  align-items: center
+  margin: 0 0 0.5rem 0
+  .feedblock
+    font-size: 0.75rem
+    display: flex
+    flex-flow: row nowrap
+    align-items: center
+    background-color: $palette2
+    margin: 0.25rem
+    padding: 0.25rem 0.5rem 0.15rem 0.5rem
+    border-radius: 0.33rem
+    input[type=checkbox]
+      margin: 0 0.5rem 0 0
+    img
+      width: 12px
+      height: auto
+      margin-left: 0.5rem
