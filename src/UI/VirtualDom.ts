@@ -30,8 +30,10 @@ export default class VirtualDOM {
     new FeedSelector(this.header, aggr)
 
     for (const feed of aggr.feeds) {
-      for (const item of feed.items) {
-        new FeedItemBlock(this.main, item)
+      if (feed.selected) {
+        for (const item of feed.items) {
+          new FeedItemBlock(this.main, item, feed)
+        }
       }
     }
   }
