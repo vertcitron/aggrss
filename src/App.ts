@@ -9,10 +9,8 @@ document.body.appendChild(title)
 
 const aggregator = new Aggregator()
 
-const query1 = aggregator.getFromURL(new URL('https://hnrss.org/newest'))
-const query2 = aggregator.getFromURL(new URL('http://feeds.bbci.co.uk/news/world/europe/rss.xml#'))
-
-Promise.all([query1, query2])
-  .then(() => {
-    aggregator.log()
-  })
+aggregator.getFromURL(new URL('https://hnrss.org/newest'))
+aggregator.getFromURL(new URL('https://www.google.fr'))
+aggregator.getFromURL(new URL('http://feeds.bbci.co.uk/news/world/europe/rss.xml#'))
+aggregator.getFromURL(new URL('https://hnrss.org/newest'))
+aggregator.getFromURL(new URL('https://nonexistingweb.site'))
