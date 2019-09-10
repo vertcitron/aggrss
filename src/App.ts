@@ -1,11 +1,7 @@
 import '../style/main.sass'
 
 import Aggregator from './models/Aggregator'
-
-// temporary DOM insertion to check if everything works
-const title = document.createElement('h1')
-title.textContent = 'AGGRSS!'
-document.body.appendChild(title)
+import VirtualDOM from './UI/VirtualDom'
 
 const aggregator = new Aggregator()
 
