@@ -11,6 +11,7 @@ export default class FeedBlock {
     this.wrapper = document.createElement('div')
     this.wrapper.className = 'feedblock'
     if (feed.status !== 'ok') this.wrapper.classList.add('error')
+    if (!feed.selected) this.wrapper.classList.add('unselected')
 
     this.select = document.createElement('input')
     this.select.type = 'checkbox'
@@ -24,6 +25,9 @@ export default class FeedBlock {
 
     this.close = document.createElement('img')
     this.close.src = crossIcon
+    this.close.addEventListener('click', e => {
+      feed.remove()
+    })
 
     this.wrapper.appendChild(this.select)
     this.wrapper.appendChild(this.name)

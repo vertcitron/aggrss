@@ -50,4 +50,12 @@ export default class Feed {
   public onUpdate (callback: () => void) {
     this.update = callback
   }
+
+  public remove () {
+    console.error(`Remove method for feed ${this.title} is not defined.`)
+  }
+
+  public onRemove (callback: () => void) {
+    this.remove = callback
+  }
 }

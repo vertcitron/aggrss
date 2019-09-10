@@ -50,9 +50,19 @@ body
     margin: 0.25rem
     padding: 0.25rem 0.5rem 0.15rem 0.5rem
     border-radius: 0.33rem
+    cursor: default
+    position: relative
     input[type=checkbox]
       margin: 0 0.5rem 0 0
+      cursor: pointer
     img
       width: 12px
       height: auto
       margin-left: 0.5rem
+      cursor: pointer
+  .feedblock.unselected
+    text-decoration: line-through
+    background-color: darken($palette2, 5%)
+    color: darken($palette3, 10%)
+  .feedblock.error
+    color: $danger-color

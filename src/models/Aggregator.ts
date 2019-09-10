@@ -30,6 +30,9 @@ export default class Aggregator {
           this.save()
           this.render()
         })
+        feed.onRemove(() => {
+          this.remove(feed)
+        })
         this.feeds.push(feed)
         console.log(`Added new Feed @ ${feed.url.href}`)
         this.save()
@@ -58,16 +61,17 @@ export default class Aggregator {
     let url: string = ''
     if (feed instanceof Feed) url = feed.url.href
     if (feed instanceof URL) url = feed.href
-    url = <string>feed
+    if (typeof feed === 'string') url = feed
     const index = this.feeds.map(f => f.url.href).indexOf(url)
    if (index > -1) {
       this.feeds.splice(index, 1)
       console.log(`Removed feed ${url}`)
       this.save()
+      this.render()
       this.log()
     } else {
-      console.error(`Error when removing feed ${url} :`)
-      console.error('This feed was not in the aggregator.')
+      console.error(`Error when removing feed ${url} :
+      This feed was not in the aggregator.`)
     }
   }
 
