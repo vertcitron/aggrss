@@ -10,9 +10,11 @@
     "serve": "parcel index.html",
     "build": "parcel build index.html"
   },
-  "devDependencies": {
+  "dependencies": {
     "dart-sass": "^1.22.10",
     "parcel-bundler": "^1.12.3",
-    "typescript": "^3.6.2"
+    "typescript": "^3.6.3"
+  },
+  "devDependencies": {
   }
 }
