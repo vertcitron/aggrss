@@ -1,4 +1,5 @@
 @import './theme.sass'
+@import './mixins.sass'
 
 html
   height: 100%
@@ -9,7 +10,4 @@ body
   height: 100%
   background-color: $palette1
   color: $palette3
-  display: flex
-  flex-flow: column nowrap
-  justify-content: center
-  align-items: center
+  @include flex-column-center-center
